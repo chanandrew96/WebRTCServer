@@ -2,7 +2,7 @@ const { PeerServer } = require('peer');
 
 // 創建 PeerJS 伺服器，指定端口和路徑
 const peerServer = PeerServer({
-  port: 9000, // 伺服器運行的端口
+  port: process.env.PORT || 9000, // 使用環境變量端口或默認9000
   path: '/peerjs', // PeerJS 的路徑
   allow_discovery: true, // 允許客戶端發現其他對等端（可選）
 });
@@ -18,4 +18,4 @@ peerServer.on('disconnect', (client) => {
 });
 
 // 伺服器啟動後的日誌
-console.log('PeerJS 伺服器正在運行於端口 9000');
+console.log(`PeerJS 伺服器正在運行於端口 ${process.env.PORT || 9000}`);
